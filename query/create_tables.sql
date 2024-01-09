@@ -7,6 +7,7 @@ CREATE TABLE pokedex.random_appears (
   "level" INTEGER NOT NULL,
   health INTEGER NOT NULL,
   attack INTEGER NOT NULL,
-  defense INTEGER NOT NULL,
+  defense INTEGER NOT null,
   ts_appear TIMESTAMP
 );
+
