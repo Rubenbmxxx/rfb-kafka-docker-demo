@@ -1,17 +1,17 @@
 from confluent_kafka import Consumer
 import time
 import json
-# from datetime import datetime
+from datetime import datetime
 import psycopg2
 
 
-def store_pokemon(pokemon, level, health, attack, defense):
+def store_pokemon(pokemon, level, health, attack, defense, ts_appear):
     sql = """
-    INSERT INTO pokedex.random_appears(pokemon, level, health, attack, defense)
-    VALUES ( %s, %s, %s, %s, %s );
+    INSERT INTO pokedex.random_appears(pokemon, level, health, attack, defense, ts_appear)
+    VALUES ( %s, %s, %s, %s, %s, %s );
     """
 
-    cur.execute(sql, (pokemon, level, health, attack, defense))
+    cur.execute(sql, (pokemon, level, health, attack, defense, ts_appear))
     conn.commit()
 
 
@@ -46,14 +46,14 @@ while True:
     data = json.loads(json_string)
 
     # print('Received message: {}'.format(message.value().decode('utf-8')))
-    print('Received message: {}'.format(message.value()))
-    # print('Pokemon: ' + data.get('pokemon'))
+    print('Wild {} appeared!'.format(data.get('pokemon')))
     store_pokemon(pokemon=data.get('pokemon'),
                   level=data.get('level'),
                   health=data.get('health'),
                   attack=data.get('attack'),
-                  defense=data.get('defense'))
+                  defense=data.get('defense'),
+                  ts_appear=datetime.now())
 
-    time.sleep(5)
+    time.sleep(1)
 
 consumer.close()
