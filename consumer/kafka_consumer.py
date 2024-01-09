@@ -1,8 +1,8 @@
 from confluent_kafka import Consumer
 import time
+import json
 # from datetime import datetime
 import psycopg2
-
 
 # def store_pokemon(pokemon, level, health, attack, defense):
 #     sql = """
@@ -40,10 +40,13 @@ while True:
         print("Consumer error: {}".format(message.error()))
         continue
 
+    message_value = message.value()
+    json_string = message_value.decode('utf-8')
+    data = json.loads(json_string)
+
     # print('Received message: {}'.format(message.value().decode('utf-8')))
-    print('Received message: {}'.format(message))
     print('Received message: {}'.format(message.value()))
-    print('Received message: {}'.format(message.key()))
+    print('Pokemon: ' + data.get('pokemon'))
 
     time.sleep(5)
 
