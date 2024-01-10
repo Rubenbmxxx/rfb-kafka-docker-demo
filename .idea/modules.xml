@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../baloo-tools/.idea/baloo-tools.iml" filepath="$PROJECT_DIR$/../baloo-tools/.idea/baloo-tools.iml" />
       <module fileurl="file://$PROJECT_DIR$/../rfb-data-eng-templates/.idea/rfb-data-eng-templates.iml" filepath="$PROJECT_DIR$/../rfb-data-eng-templates/.idea/rfb-data-eng-templates.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/rfb-kafka-docker-demo.iml" filepath="$PROJECT_DIR$/.idea/rfb-kafka-docker-demo.iml" />
     </modules>
